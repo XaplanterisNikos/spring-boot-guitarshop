@@ -18,11 +18,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Configuration class for customizing Spring Data REST.
+ */
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
 
     private EntityManager entityManager;
 
+    /**
+     * Constructor to initialize MyDataRestConfig with an EntityManager.
+     *
+     * @param theEntityManager The EntityManager to be used.
+     */
     @Autowired
     public MyDataRestConfig(EntityManager theEntityManager) {
         entityManager = theEntityManager;
