@@ -47,6 +47,12 @@ public class OrderItem {
     @Column(name = "product_id")
     private Long productId;
 
-    @Transient
+/**
+ * Represents the relationship between an entity and an {@link Order}.
+ * This is a many-to-one relationship where many instances of the current entity
+ * are associated with one {@link Order}.
+ **/
+    @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
 }

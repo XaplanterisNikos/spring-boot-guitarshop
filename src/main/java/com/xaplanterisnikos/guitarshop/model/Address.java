@@ -53,6 +53,23 @@ public class Address {
     private String zipCode;
 
 
+    /**
+     * Represents the relationship between this entity and an {@link Order}.
+     * This is a one-to-one relationship where this entity has the same primary key as the associated {@link Order}.
+     *
+     * <p>
+     * Annotations used:
+     * <ul>
+     *   <li>{@code @OneToOne}: Specifies that this entity has a one-to-one relationship with the {@link Order} entity.</li>
+     *   <li>{@code @PrimaryKeyJoinColumn}: Specifies that the primary key of this entity is also the primary key of the associated {@link Order} entity.</li>
+     * </ul>
+     * </p>
+     */
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private Order order;
+
+
 
 
 }

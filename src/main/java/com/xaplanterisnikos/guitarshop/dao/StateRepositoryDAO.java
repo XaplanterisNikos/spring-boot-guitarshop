@@ -13,7 +13,7 @@ import java.util.List;
  */
 @CrossOrigin("http://localhost:4200")
 @RepositoryRestResource
-public interface StateRepository extends JpaRepository<State, Integer> {
+public interface StateRepositoryDAO extends JpaRepository<State, Integer> {
 
     /**
      * Retrieves a list of states associated with a given country code.
