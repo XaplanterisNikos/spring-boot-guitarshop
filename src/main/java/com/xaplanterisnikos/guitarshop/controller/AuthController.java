@@ -2,6 +2,7 @@ package com.xaplanterisnikos.guitarshop.controller;
 
 
 import com.xaplanterisnikos.guitarshop.dto.CredentialsDto;
+import com.xaplanterisnikos.guitarshop.dto.SignUpDto;
 import com.xaplanterisnikos.guitarshop.dto.UserDto;
 import com.xaplanterisnikos.guitarshop.service.UserService;
 import jakarta.validation.Valid;
@@ -29,11 +30,11 @@ public class AuthController {
         return ResponseEntity.ok(userDto);
     }
 
-//    @PostMapping("/register")
-//    public ResponseEntity<UserDto> register(@RequestBody @Valid SignUpDto user) {
-//        UserDto createdUser = userService.register(user);
-//        createdUser.setToken(userAuthenticationProvider.createToken(createdUser));
-//        return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser);
-//    }
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> register(@RequestBody @Valid SignUpDto user) {
+        UserDto createdUser = userService.register(user);
+        //createdUser.setToken(userAuthenticationProvider.createToken(createdUser));
+        return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser);
+    }
 
 }
