@@ -1,6 +1,7 @@
 package com.xaplanterisnikos.guitarshop.controller;
 
 
+import com.xaplanterisnikos.guitarshop.config.UserAuthenticationProvider;
 import com.xaplanterisnikos.guitarshop.dto.CredentialsDto;
 import com.xaplanterisnikos.guitarshop.dto.SignUpDto;
 import com.xaplanterisnikos.guitarshop.dto.UserDto;
@@ -21,19 +22,19 @@ import java.net.URI;
 public class AuthController {
 
     private final UserService userService;
-    //private final UserAuthenticationProvider userAuthenticationProvider;
+    private final UserAuthenticationProvider userAuthenticationProvider;
 
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody @Valid CredentialsDto credentialsDto) {
         UserDto userDto = userService.login(credentialsDto);
-        //userDto.setToken(userAuthenticationProvider.createToken(userDto));
+        userDto.setToken(userAuthenticationProvider.createToken(userDto));
         return ResponseEntity.ok(userDto);
     }
 
     @PostMapping("/register")
     public ResponseEntity<UserDto> register(@RequestBody @Valid SignUpDto user) {
         UserDto createdUser = userService.register(user);
-        //createdUser.setToken(userAuthenticationProvider.createToken(createdUser));
+        createdUser.setToken(userAuthenticationProvider.createToken(createdUser));
         return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser);
     }
 
