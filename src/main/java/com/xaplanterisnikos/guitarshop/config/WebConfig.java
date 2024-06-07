@@ -16,7 +16,7 @@ import java.util.Arrays;
 @EnableWebMvc
 public class WebConfig {
         @Bean
-        public FilterRegistrationBean corsFilter() {
+        public CorsFilter  corsFilter() {
             UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
             CorsConfiguration config = new CorsConfiguration();
             config.setAllowCredentials(true);
@@ -35,9 +35,9 @@ public class WebConfig {
             ));
             config.setMaxAge(3600L);
             source.registerCorsConfiguration("/**", config);
-            FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
-            bean.setOrder(-102);
-            return bean;
+//            FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+//            bean.setOrder(-102);
+            return new CorsFilter(source);
         }
 
 }

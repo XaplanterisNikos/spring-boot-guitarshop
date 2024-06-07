@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * Controller for handling checkout-related HTTP requests in the guitar shop API.
  * This controller provides endpoints for placing orders and handling purchase transactions.
  */
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/api/checkout")
 public class CheckoutController {
