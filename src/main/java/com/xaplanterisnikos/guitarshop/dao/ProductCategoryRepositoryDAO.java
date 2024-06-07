@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 /**
  * Repository interface for managing product categories in the guitar shop application.
  */
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 @RepositoryRestResource(collectionResourceRel = "productCategory",path ="product-category")
 public interface ProductCategoryRepositoryDAO extends CrudRepository<ProductCategory, Long> {
 }

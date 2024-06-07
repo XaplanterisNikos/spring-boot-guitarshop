@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Repository interface for managing states in the guitar shop application.
  */
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 @RepositoryRestResource
 public interface StateRepositoryDAO extends JpaRepository<State, Integer> {
 

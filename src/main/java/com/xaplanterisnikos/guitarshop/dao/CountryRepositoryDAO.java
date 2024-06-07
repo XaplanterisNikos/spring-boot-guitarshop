@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 /**
  * Repository interface for managing countries in the guitar shop application.
  */
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 @RepositoryRestResource(collectionResourceRel = "countries", path = "countries")
 public interface CountryRepositoryDAO extends JpaRepository<Country, Integer> {
 

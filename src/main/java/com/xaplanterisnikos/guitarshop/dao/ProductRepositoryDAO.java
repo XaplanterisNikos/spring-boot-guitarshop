@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 /**
  * Repository interface for managing products in the guitar shop application.
  */
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 public interface ProductRepositoryDAO extends JpaRepository<Product, Long> {
 
     /**
