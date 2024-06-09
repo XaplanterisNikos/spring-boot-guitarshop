@@ -33,7 +33,14 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         entityManager = theEntityManager;
     }
 
-
+    /**
+     * Configure the repository REST configuration.
+     * This method disables certain HTTP methods (POST, PUT, DELETE) for specified domain types
+     * to make them read-only and exposes the IDs of the entities.
+     *
+     * @param config the repository REST configuration
+     * @param cors   the CORS registry
+     */
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
 
@@ -56,12 +63,23 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         exposeIds(config);
     }
 
+    /**
+     * Disable the specified HTTP methods for the given domain type.
+     *
+     * @param config            the exposure configuration for a domain type
+     * @param theUnsupportedActions the HTTP methods to be disabled
+     */
     private static void disableHttpMethods(ExposureConfigurer config, HttpMethod[] theUnsupportedActions) {
         config
                 .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
                 .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
     }
 
+    /**
+     * Expose the IDs of the entities in the repository response.
+     *
+     * @param config the repository REST configuration
+     */
     private void exposeIds(RepositoryRestConfiguration config) {
         // expose entity ids
 

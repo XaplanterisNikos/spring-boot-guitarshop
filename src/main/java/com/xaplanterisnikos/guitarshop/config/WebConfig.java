@@ -1,6 +1,6 @@
 package com.xaplanterisnikos.guitarshop.config;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
+//import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -12,9 +12,19 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Arrays;
 
+/**
+ * Configuration class for setting up web-related configurations, including CORS.
+ */
 @Configuration
 @EnableWebMvc
 public class WebConfig {
+
+    /**
+     * Configures the CORS filter to allow cross-origin requests.
+     * This filter is configured to allow requests from "http://localhost:4200" with specific headers and methods.
+     *
+     * @return the configured CorsFilter
+     */
         @Bean
         public CorsFilter  corsFilter() {
             UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

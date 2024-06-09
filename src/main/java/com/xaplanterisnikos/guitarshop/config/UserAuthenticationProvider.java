@@ -18,6 +18,9 @@ import java.util.Base64;
 import java.util.Collections;
 import java.util.Date;
 
+/**
+ * Provider class for user authentication using JWT.
+ */
 @RequiredArgsConstructor
 @Component
 public class UserAuthenticationProvider {
@@ -27,12 +30,21 @@ public class UserAuthenticationProvider {
 
     private final UserService userService;
 
+    /**
+     * Initializes the provider by encoding the secret key to avoid having the raw key available in the JVM.
+     */
     @PostConstruct
     protected void init() {
         // this is to avoid having the raw secret key available in the JVM
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
+    /**
+     * Creates a JWT token for the given user.
+     *
+     * @param user the user for whom the token is created
+     * @return the created JWT token
+     */
     public String createToken(UserDTO user) {
         Date now = new Date();
         Date validity = new Date(now.getTime() + 3600000); // 1 hour
@@ -47,6 +59,12 @@ public class UserAuthenticationProvider {
                 .sign(algorithm);
     }
 
+    /**
+     * Validates the given JWT token and returns the corresponding authentication.
+     *
+     * @param token the JWT token to validate
+     * @return the authentication if the token is valid
+     */
     public Authentication validateToken(String token) {
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
 
@@ -64,6 +82,13 @@ public class UserAuthenticationProvider {
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
     }
 
+    /**
+     * Strongly validates the given JWT token and returns the corresponding authentication.
+     * This method includes a call to the user service to fetch additional user details.
+     *
+     * @param token the JWT token to validate
+     * @return the authentication if the token is valid
+     */
     public Authentication validateTokenStrongly(String token) {
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
 

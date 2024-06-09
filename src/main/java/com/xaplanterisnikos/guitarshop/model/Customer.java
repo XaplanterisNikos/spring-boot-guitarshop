@@ -54,13 +54,11 @@ public class Customer {
 
 
     /**
-     * Adds an {@link Order} to the set of orders associated with this customer.
-     * If the order is not already present in the set, it will be added.
-     * If the set of orders does not already contain the given order,
-     * a new {@link HashSet} is created, and the order is added to this new set.
-     * </p>
+     * Adds an Order to the customer's set of orders.
+     * If the provided order is not null and not already present in the set of orders,
+     * it is added to the set, and the customer reference is set on the order.
      *
-     * @param order the {@link Order} to be added to the set of orders. If the order is {@code null}, no action is taken.
+     * @param order the Order to add
      */
  public void add(Order order){
      if (order != null) {

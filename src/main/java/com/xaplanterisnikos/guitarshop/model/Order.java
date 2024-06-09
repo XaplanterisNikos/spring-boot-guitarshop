@@ -73,17 +73,9 @@ public class Order {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private Set<OrderItem> orderItems = new HashSet<>();
 
+
     /**
-     * Represents the relationship between an order and a customer.
-     * This is a many-to-one relationship where many orders can belong to one customer.
-     *
-     * <p>
-     * Annotations used:
-     * <ul>
-     *   <li>{@code @ManyToOne}: Specifies that this entity has a many-to-one relationship with the {@link Customer} entity.</li>
-     *   <li>{@code @JoinColumn(name = "customer_id")}: Specifies the foreign key column ({@code customer_id}) in the orders table that references the primary key of the {@link Customer} entity.</li>
-     * </ul>
-     * </p>
+     * The customer associated with the order.
      */
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -91,43 +83,25 @@ public class Order {
 
 
     /**
-     * Represents the relationship between an order and its shipping address.
-     * This is a one-to-one relationship where an order has one shipping address.
-     *
-     * <p>
-     * Annotations used:
-     * <ul>
-     *   <li>{@code @OneToOne(cascade = CascadeType.ALL)}: Specifies that this entity has a one-to-one relationship with the {@link Address} entity.
-     *       CascadeType.ALL means all operations (persist, merge, remove, refresh, detach) should be cascaded to the {@link Address} entity.</li>
-     *   <li>{@code @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")}: Specifies the foreign key column ({@code shipping_address_id}) in the orders table that references the {@code id} column in the {@link Address} entity.</li>
-     * </ul>
-     * </p>
+     * The shipping address for the order.
      */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shipping_address_id",referencedColumnName = "id")
     private Address shippingAddress;
 
     /**
-     * Represents the relationship between an order and its billing address.
-     * This is a one-to-one relationship where an order has one billing address.
-     *
-     * <p>
-     * Annotations used:
-     * <ul>
-     *   <li>{@code @OneToOne(cascade = CascadeType.ALL)}: Specifies that this entity has a one-to-one relationship with the {@link Address} entity.
-     *       CascadeType.ALL means all operations (persist, merge, remove, refresh, detach) should be cascaded to the {@link Address} entity.</li>
-     *   <li>{@code @JoinColumn(name = "billing_address_id", referencedColumnName = "id")}: Specifies the foreign key column ({@code billing_address_id}) in the orders table that references the {@code id} column in the {@link Address} entity.</li>
-     * </ul>
-     * </p>
+     * The billing address for the order.
      */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "billing_address_id",referencedColumnName = "id")
     private Address billingAddress;
 
     /**
-     * Method to add an order item to the order.
+     * Adds an order item to the order.
+     * If the provided order item is not null and not already present in the set of order items,
+     * it is added to the set, and the order reference is set on the order item.
      *
-     * @param item The order item to add.
+     * @param item the OrderItem to add
      */
     public void add(OrderItem item) {
         // check if null or empty
@@ -140,6 +114,13 @@ public class Order {
         }
     }
 
+    /**
+     * Retrieves the order tracking number.
+     * This method constructs and returns a tracking number string based on the order's unique identifier
+     * and the last name and first name of the associated customer.
+     *
+     * @return the order tracking number
+     */
     public String getOrderTrackingNumber(){
         return "Tracking No: "+orderTrackingNumber +" "+"CustomerName: "+ customer.getLastName() +" "+ customer.getFirstName();
     }
