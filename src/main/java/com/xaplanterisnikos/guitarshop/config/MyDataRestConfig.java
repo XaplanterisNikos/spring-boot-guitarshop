@@ -1,9 +1,6 @@
 package com.xaplanterisnikos.guitarshop.config;
 
-import com.xaplanterisnikos.guitarshop.model.Country;
-import com.xaplanterisnikos.guitarshop.model.Product;
-import com.xaplanterisnikos.guitarshop.model.ProductCategory;
-import com.xaplanterisnikos.guitarshop.model.State;
+import com.xaplanterisnikos.guitarshop.model.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +48,8 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
                 .forDomainType(Country.class), theUnsupportedActions);
         disableHttpMethods(config.getExposureConfiguration()
                 .forDomainType(State.class), theUnsupportedActions);
+        disableHttpMethods(config.getExposureConfiguration()
+                .forDomainType(Order.class), theUnsupportedActions);
 
 
         // call an internal helper method

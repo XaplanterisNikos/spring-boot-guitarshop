@@ -1,8 +1,8 @@
 package com.xaplanterisnikos.guitarshop.mappers;
 
 
-import com.xaplanterisnikos.guitarshop.dto.SignUpDto;
-import com.xaplanterisnikos.guitarshop.dto.UserDto;
+import com.xaplanterisnikos.guitarshop.dto.SignUpDTO;
+import com.xaplanterisnikos.guitarshop.dto.UserDTO;
 import com.xaplanterisnikos.guitarshop.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,10 +12,10 @@ import org.mapstruct.Mapping;
 public interface UserMapper {
 
 
-    UserDto toUserDto(User user);
+    UserDTO toUserDto(User user);
 
     @Mapping(target = "password", ignore = true)
-    User signUpToUser(SignUpDto signUpDto);
+    User signUpToUser(SignUpDTO signUpDto);
 
 
 

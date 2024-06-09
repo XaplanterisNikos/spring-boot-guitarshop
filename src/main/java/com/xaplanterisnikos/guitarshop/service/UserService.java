@@ -2,8 +2,8 @@ package com.xaplanterisnikos.guitarshop.service;
 
 
 import com.xaplanterisnikos.guitarshop.dto.CredentialsDto;
-import com.xaplanterisnikos.guitarshop.dto.SignUpDto;
-import com.xaplanterisnikos.guitarshop.dto.UserDto;
+import com.xaplanterisnikos.guitarshop.dto.SignUpDTO;
+import com.xaplanterisnikos.guitarshop.dto.UserDTO;
 import com.xaplanterisnikos.guitarshop.exceptions.AppException;
 import com.xaplanterisnikos.guitarshop.mappers.UserMapper;
 import com.xaplanterisnikos.guitarshop.model.User;
@@ -26,7 +26,7 @@ public class UserService {
 
     private final UserMapper userMapper;
 
-    public UserDto login(CredentialsDto credentialsDto) {
+    public UserDTO login(CredentialsDto credentialsDto) {
         User user = userRepository.findByLogin(credentialsDto.login())
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
 
@@ -36,7 +36,7 @@ public class UserService {
         throw new AppException("Invalid password", HttpStatus.BAD_REQUEST);
     }
 
-    public UserDto register(SignUpDto userDto) {
+    public UserDTO register(SignUpDTO userDto) {
         Optional<User> optionalUser = userRepository.findByLogin(userDto.login());
 
         if (optionalUser.isPresent()) {
@@ -51,7 +51,7 @@ public class UserService {
         return userMapper.toUserDto(savedUser);
     }
 
-    public UserDto findByLogin(String login) {
+    public UserDTO findByLogin(String login) {
         User user = userRepository.findByLogin(login)
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
         return userMapper.toUserDto(user);

@@ -139,4 +139,9 @@ public class Order {
             item.setOrder(this);
         }
     }
+
+    public String getOrderTrackingNumber(){
+        return "Tracking No: "+orderTrackingNumber +" "+"CustomerName: "+ customer.getLastName() +" "+ customer.getFirstName();
+    }
+
 }
